@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "workwell",
-    "slug": "workwell",
+    "name": "lista-de-tarefas-plus",
+    "slug": "lista-de-tarefas-plus",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -21,10 +21,19 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "package": "com.nathan299.listadetarefasplus"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router"
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "6efd9433-cb31-45ab-b0d5-7c5ee2212f4d"
+      }
     }
   }
 }
