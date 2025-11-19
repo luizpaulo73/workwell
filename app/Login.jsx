@@ -1,30 +1,24 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity, View, Text } from "react-native";
 import { useRouter } from "expo-router";
-import { useTheme } from "../src/context/themeContext";
-import { useTranslation } from "react-i18next";
-import BaseScreens from "../src/_components/BaseScreens/BaseScreens";
 
 export default function Login() {
-    const { t } = useTranslation();
-    const { colors } = useTheme();
     const router = useRouter();
 
     const handleEnter = () => router.replace("/home");
 
     return (
-        <BaseScreens title={t("login.title")}>
-            <View style={styles.formContainer}>
-                <TouchableOpacity
-                    onPress={handleEnter}
-                    style={[styles.btn, { backgroundColor: colors.primary }]}
-                >
-                    <Text style={{ color: colors.btnText, fontSize: 20 }}>
-                        {t("login.loginButton")}
-                    </Text>
-                </TouchableOpacity>
-            </View>
-        </BaseScreens>
+        <View style={[styles.screen, { backgroundColor: "#fff" }]}>
+            <Text style={styles.title}>Entrar</Text>
+            <TouchableOpacity
+                onPress={handleEnter}
+                style={[styles.btn, { backgroundColor: "#2563EB" }]}
+            >
+                <Text style={{ color: "#fff", fontSize: 18 }}>
+                    Ir para a Home
+                </Text>
+            </TouchableOpacity>
+        </View>
     );
 }
 
@@ -38,6 +32,13 @@ const styles = StyleSheet.create({
         alignItems: "center",
         marginTop: 30,
     },
+    screen: {
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+        padding: 24,
+    },
+    title: { fontSize: 22, fontWeight: "600", marginBottom: 16 },
     formContainer: {
         flex: 0.75,
         gap: "5%",
