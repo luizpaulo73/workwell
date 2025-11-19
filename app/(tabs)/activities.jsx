@@ -1,12 +1,53 @@
 import React from "react";
-import { View, Text } from "react-native";
+import {
+    View,
+    Text,
+    ScrollView,
+    StyleSheet,
+    SafeAreaView,
+    StatusBar,
+} from "react-native";
+import ActivityCard from "../../src/components/ActivityCard";
+import { activitiesData } from "../../src/components/activitiesData";
 
-export default function ActivitiesTab() {
+export default function ActivitiesScreen() {
     return (
-        <View
-            style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
-        >
-            <Text>Atividades</Text>
-        </View>
+        <SafeAreaView style={styles.container}>
+            <StatusBar barStyle="dark-content" backgroundColor="#F9FAFB" />
+            <View style={styles.header}>
+                <Text style={styles.headerTitle}>Atividades</Text>
+                <Text style={styles.headerSubtitle}>
+                    Participe de eventos de bem-estar
+                </Text>
+            </View>
+            <ScrollView
+                style={styles.scrollView}
+                showsVerticalScrollIndicator={false}
+                contentContainerStyle={styles.scrollContent}
+            >
+                {activitiesData.map((a) => (
+                    <ActivityCard key={a.id} activity={a} />
+                ))}
+            </ScrollView>
+        </SafeAreaView>
     );
 }
+
+const styles = StyleSheet.create({
+    container: { flex: 1, backgroundColor: "#F9FAFB" },
+    header: {
+        backgroundColor: "#F9FAFB",
+        paddingHorizontal: 16,
+        paddingTop: 16,
+        paddingBottom: 20,
+    },
+    headerTitle: {
+        fontSize: 28,
+        fontWeight: "bold",
+        color: "#111827",
+        marginBottom: 4,
+    },
+    headerSubtitle: { fontSize: 14, color: "#6B7280" },
+    scrollView: { flex: 1 },
+    scrollContent: { paddingHorizontal: 16, paddingBottom: 24 },
+});
