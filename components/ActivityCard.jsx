@@ -1,8 +1,8 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { Calendar, MapPin, Users } from "lucide-react-native";
+import { Calendar, MapPin, Users, Check } from "lucide-react-native";
 
-export default function ActivityCard({ activity }) {
+export default function ActivityCard({ activity, subscribed, onSubscribe }) {
     return (
         <View style={styles.card}>
             <View style={styles.cardHeader}>
@@ -19,8 +19,34 @@ export default function ActivityCard({ activity }) {
                         </Text>
                     </View>
                 </View>
-                <TouchableOpacity style={styles.subscribeButton}>
-                    <Text style={styles.subscribeButtonText}>Inscrever</Text>
+                <TouchableOpacity
+                    style={[
+                        styles.subscribeButton,
+                        subscribed && styles.subscribeButtonSubscribed,
+                    ]}
+                    disabled={subscribed}
+                    onPress={() =>
+                        !subscribed && onSubscribe && onSubscribe(activity.id)
+                    }
+                >
+                    {subscribed ? (
+                        <View
+                            style={{
+                                flexDirection: "row",
+                                alignItems: "center",
+                                gap: 4,
+                            }}
+                        >
+                            <Check size={14} color="#065F46" />
+                            <Text style={styles.subscribeButtonSubscribedText}>
+                                Inscrito
+                            </Text>
+                        </View>
+                    ) : (
+                        <Text style={styles.subscribeButtonText}>
+                            Inscrever
+                        </Text>
+                    )}
                 </TouchableOpacity>
             </View>
             <View style={styles.cardDetails}>
@@ -89,6 +115,15 @@ const styles = StyleSheet.create({
         borderColor: "#E5E7EB",
     },
     subscribeButtonText: { fontSize: 13, fontWeight: "500", color: "#111827" },
+    subscribeButtonSubscribed: {
+        backgroundColor: "#ECFDF5",
+        borderColor: "#6EE7B7",
+    },
+    subscribeButtonSubscribedText: {
+        fontSize: 13,
+        fontWeight: "600",
+        color: "#065F46",
+    },
     cardDetails: { gap: 8, marginBottom: 12 },
     detailRow: { flexDirection: "row", alignItems: "center", gap: 8 },
     detailText: { fontSize: 13, color: "#6B7280" },

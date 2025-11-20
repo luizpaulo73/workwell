@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import {
     View,
     Text,
@@ -18,6 +18,9 @@ import {
     Calendar,
     Users,
 } from "lucide-react-native";
+import { useFocusEffect } from "expo-router";
+import { getSubscriptions } from "../../storage/activitySubscriptions";
+import { activitiesData } from "../../components/activitiesData";
 
 function MoodEmojiSelector({ onSelect }) {
     const [selected, setSelected] = useState(null);
@@ -54,6 +57,7 @@ function MoodEmojiSelector({ onSelect }) {
 
 export default function HomeTab() {
     const [selectedMood, setSelectedMood] = useState(null);
+    const [participationPct, setParticipationPct] = useState(0);
     const userName = "João";
 
     const shortcuts = [
@@ -100,6 +104,19 @@ export default function HomeTab() {
         "💬 Palestra: Resiliência",
     ];
 
+    const computeParticipation = useCallback(async () => {
+        const subs = await getSubscriptions();
+        const total = activitiesData.length || 1; // avoid divide by zero
+        const pct = Math.round((subs.length / total) * 100);
+        setParticipationPct(pct);
+    }, []);
+
+    useFocusEffect(
+        useCallback(() => {
+            computeParticipation();
+        }, [computeParticipation])
+    );
+
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar barStyle="dark-content" />
@@ -132,19 +149,26 @@ export default function HomeTab() {
                             <Text style={styles.progressTitle}>
                                 Participação do Mês
                             </Text>
-                            <Text style={styles.progressPercentage}>72%</Text>
+                            <Text style={styles.progressPercentage}>
+                                {participationPct}%
+                            </Text>
                         </View>
                         <View style={styles.progressBarBg}>
                             <View
                                 style={[
                                     styles.progressBarFill,
-                                    { width: "72%" },
+                                    { width: `${participationPct}%` },
                                 ]}
                             />
                         </View>
                         <Text style={styles.progressFeedback}>
-                            Ótimo trabalho! Continue participando das
-                            atividades.
+                            {participationPct === 0
+                                ? "Comece participando de uma atividade."
+                                : participationPct < 50
+                                ? "Bom início! Continue para aumentar sua participação."
+                                : participationPct < 100
+                                ? "Ótimo trabalho! Quase lá."
+                                : "Parabéns! Você participou de todas as atividades."}
                         </Text>
                     </View>
 

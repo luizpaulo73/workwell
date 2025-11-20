@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import {
     View,
     Text,
@@ -9,8 +9,28 @@ import {
 } from "react-native";
 import ActivityCard from "../../components/ActivityCard";
 import { activitiesData } from "../../components/activitiesData";
+import {
+    getSubscriptions,
+    addSubscription,
+} from "../../storage/activitySubscriptions";
 
 export default function ActivitiesScreen() {
+    const [subs, setSubs] = useState([]);
+
+    const loadSubs = useCallback(async () => {
+        const data = await getSubscriptions();
+        setSubs(data);
+    }, []);
+
+    useEffect(() => {
+        loadSubs();
+    }, [loadSubs]);
+
+    const handleSubscribe = async (id) => {
+        const updated = await addSubscription(id);
+        setSubs(updated);
+    };
+
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar barStyle="dark-content" backgroundColor="#F9FAFB" />
@@ -26,7 +46,12 @@ export default function ActivitiesScreen() {
                 contentContainerStyle={styles.scrollContent}
             >
                 {activitiesData.map((a) => (
-                    <ActivityCard key={a.id} activity={a} />
+                    <ActivityCard
+                        key={a.id}
+                        activity={a}
+                        subscribed={subs.includes(a.id)}
+                        onSubscribe={handleSubscribe}
+                    />
                 ))}
             </ScrollView>
         </SafeAreaView>
