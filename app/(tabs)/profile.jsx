@@ -26,7 +26,6 @@ export default function ProfileScreen() {
 
     const loadConsultations = useCallback(async () => {
         const data = await getConsultations();
-        // Map consultations to history activity shape
         const mapped = data.map((c) => ({
             id: c.id,
             icon: c.icon || "👩‍⚕️",

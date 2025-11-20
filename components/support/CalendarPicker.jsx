@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
 function buildMonth(year, month) {
-    // month 0-11
     const firstDay = new Date(year, month, 1);
     const lastDay = new Date(year, month + 1, 0);
     const days = [];
@@ -108,7 +107,7 @@ export const CalendarPicker = ({ value, onChange }) => {
 
 function firstWeekOffset(date) {
     const first = new Date(date.getFullYear(), date.getMonth(), 1);
-    return first.getDay(); // 0-6
+    return first.getDay();
 }
 
 const styles = StyleSheet.create({
