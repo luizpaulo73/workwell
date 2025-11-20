@@ -7,8 +7,8 @@ import {
     SafeAreaView,
     StatusBar,
 } from "react-native";
-import ActivityCard from "../../src/components/ActivityCard";
-import { activitiesData } from "../../src/components/activitiesData";
+import ActivityCard from "../../components/ActivityCard";
+import { activitiesData } from "../../components/activitiesData";
 
 export default function ActivitiesScreen() {
     return (

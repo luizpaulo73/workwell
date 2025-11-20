@@ -1,0 +1,38 @@
+export const activitiesData = [
+    {
+        id: 1,
+        icon: "🧘",
+        title: "Meditação Guiada",
+        category: "Bem-estar Mental",
+        date: "Hoje • 18:00",
+        location: "Sala Virtual A",
+        vacancies: "12 vagas restantes",
+    },
+    {
+        id: 2,
+        icon: "🥗",
+        title: "Workshop de Alimentação",
+        category: "Saúde Física",
+        date: "Amanhã • 12:30",
+        location: "Auditório 2",
+        vacancies: "8 vagas restantes",
+    },
+    {
+        id: 3,
+        icon: "💬",
+        title: "Grupo de Conversa",
+        category: "Integração",
+        date: "Sex • 17:00",
+        location: "Sala Multiuso",
+        vacancies: "5 vagas restantes",
+    },
+    {
+        id: 4,
+        icon: "🏃",
+        title: "Corrida Leve",
+        category: "Atividade Física",
+        date: "Sab • 08:00",
+        location: "Parque Central",
+        vacancies: "20 vagas restantes",
+    },
+];

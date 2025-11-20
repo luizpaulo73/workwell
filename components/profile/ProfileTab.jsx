@@ -1,8 +1,18 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { Settings, LogOut } from "lucide-react-native";
+import { LogOut } from "lucide-react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useRouter } from "expo-router";
 
 export const ProfileTab = ({ userData }) => {
+    const router = useRouter();
+
+    const handleLogout = async () => {
+        await AsyncStorage.removeItem("@auth_logged");
+        await AsyncStorage.removeItem("@auth_user");
+        router.replace("/Login");
+    };
+
     return (
         <View style={styles.container}>
             <View style={styles.card}>
@@ -19,36 +29,10 @@ export const ProfileTab = ({ userData }) => {
                     <Text style={styles.value}>{userData.sector}</Text>
                 </View>
             </View>
-            <TouchableOpacity style={styles.editButton}>
-                <Settings size={18} color="#111827" />
-                <Text style={styles.editButtonText}>Editar Perfil</Text>
-            </TouchableOpacity>
-            <View style={styles.card}>
-                <Text style={styles.cardTitle}>Preferências</Text>
-                <View style={styles.preferenceItem}>
-                    <View style={styles.checkbox}>
-                        <View style={styles.checkboxChecked} />
-                    </View>
-                    <Text style={styles.preferenceText}>
-                        Notificações de consultas
-                    </Text>
-                </View>
-                <View style={styles.preferenceItem}>
-                    <View style={styles.checkbox}>
-                        <View style={styles.checkboxChecked} />
-                    </View>
-                    <Text style={styles.preferenceText}>
-                        Notificações de atividades
-                    </Text>
-                </View>
-                <View style={styles.preferenceItem}>
-                    <View style={styles.checkbox}>
-                        <View style={styles.checkboxChecked} />
-                    </View>
-                    <Text style={styles.preferenceText}>Check-in diário</Text>
-                </View>
-            </View>
-            <TouchableOpacity style={styles.logoutButton}>
+            <TouchableOpacity
+                style={styles.logoutButton}
+                onPress={handleLogout}
+            >
                 <LogOut size={18} color="#DC2626" />
                 <Text style={styles.logoutButtonText}>Fazer Logout</Text>
             </TouchableOpacity>
