@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Calendar, Video, Clock } from "lucide-react-native";
 
-export const AppointmentsTab = ({ consultations = [] }) => {
+export const AppointmentsTab = ({ consultations = [], onCancel }) => {
     const latest = consultations.slice(-1)[0];
     return (
         <View>
@@ -28,7 +28,10 @@ export const AppointmentsTab = ({ consultations = [] }) => {
                                 Videoconferência
                             </Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.cancelButton}>
+                        <TouchableOpacity
+                            style={styles.cancelButton}
+                            onPress={() => onCancel && onCancel(latest.id)}
+                        >
                             <Text style={styles.cancelButtonText}>
                                 Cancelar
                             </Text>

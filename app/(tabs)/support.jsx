@@ -11,7 +11,11 @@ import { TabNav } from "../../components/support/TabNav";
 import { ScheduleTab } from "../../components/support/ScheduleTab";
 import { AppointmentsTab } from "../../components/support/AppointmentsTab";
 import { ChatTab } from "../../components/support/ChatTab";
-import { addConsultation, getConsultations } from "../../storage/consultations";
+import {
+    addConsultation,
+    getConsultations,
+    removeConsultation,
+} from "../../storage/consultations";
 
 export default function SupportTab() {
     const [activeSubTab, setActiveSubTab] = useState("schedule");
@@ -24,6 +28,11 @@ export default function SupportTab() {
 
     const handleSchedule = async (consultation) => {
         const updated = await addConsultation(consultation);
+        setConsultations(updated);
+    };
+
+    const handleCancel = async (id) => {
+        const updated = await removeConsultation(id);
         setConsultations(updated);
     };
 
@@ -54,7 +63,10 @@ export default function SupportTab() {
                         <ScheduleTab onSchedule={handleSchedule} />
                     )}
                     {activeSubTab === "appointments" && (
-                        <AppointmentsTab consultations={consultations} />
+                        <AppointmentsTab
+                            consultations={consultations}
+                            onCancel={handleCancel}
+                        />
                     )}
                     {activeSubTab === "chat" && <ChatTab />}
                 </View>
