@@ -248,7 +248,7 @@ export default function HomeTab() {
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, backgroundColor: "#FFFFFF" },
+    container: { flex: 1, backgroundColor: "#FFFFFF", marginTop: 20 },
     scrollView: { flex: 1 },
     header: {
         backgroundColor: "#F9FAFB",

@@ -34,7 +34,7 @@ export default function ActivitiesScreen() {
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, backgroundColor: "#F9FAFB" },
+    container: { flex: 1, backgroundColor: "#F9FAFB", marginTop: 20 },
     header: {
         backgroundColor: "#F9FAFB",
         paddingHorizontal: 16,
