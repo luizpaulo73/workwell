@@ -1,67 +1,65 @@
-# Lista de Tarefas Plus
+# 🌿 WorkWell – App de Bem-Estar Corporativo
+
+Gestão de bem-estar, atividades e apoio psicológico em um só lugar.
 
 ## Integrantes
 
-* Gustavo De Aguiar – RM557707
-* Luiz Paulo Freitas Fernandes – RM555497
-* Matheus Freitas – RM552602
-* Nathan Magno – RM558987
+-   **Nome:** Enzo G. Marsola  
+    **RM:** 556310 - 2TDSPK
 
----
+-   **Nome:** Luiz Paulo F. Fernandes  
+    **RM:** 555497 - 2TDSPF
+-   **Nome:** Rafael de Souza Pinto  
+    **RM:** 555130 - 2TDSPY
 
-## Pré-requisitos
+## 📝 Descrição
 
-Antes de rodar o projeto, certifique-se de ter instalado:
+O **WorkWell** é um aplicativo mobile construído com **Expo** e **React Native** para promover o bem-estar de colaboradores. Ele oferece:
 
-* [Node.js](https://nodejs.org/) (versão 18 ou superior recomendada)
-* [Expo CLI](https://docs.expo.dev/workflow/expo-cli/)
+-   Check-in diário de humor
+-   Acompanhamento de participação mensal em atividades
+-   Inscrição em eventos de bem-estar corporativo
+-   Apoio psicológico: agendamento, cancelamento e histórico de consultas
+-   Chat emocional 24/7 (placeholder) e modo SOS (placeholder)
+-   Histórico integrado de atividades e consultas no perfil
 
----
+Persistência simples via **AsyncStorage** (consultas e inscrições). Navegação usando **Expo Router**.                               |
 
-## Como executar
+## 🔐 Login de Teste
 
-1. Clone o repositório:
+Use as credenciais abaixo para entrar:
 
-```bash
-git clone https://github.com/NathanMagno/lista_de_tarefas.git
-cd lista_de_tarefas
+```
+Usuário: workwelladm
+Senha:   ww1234
 ```
 
-2. Instale as dependências:
+Após login a sessão é persistida; o logout limpa os dados e retorna à tela de login.
 
-```bash
+## ⚙️ Pré-requisitos
+
+-   [Node.js 18+](https://nodejs.org/)
+-   [Expo CLI](https://docs.expo.dev/workflow/expo-cli/)
+-   Emulador Android / iOS ou aplicativo **Expo Go**
+
+## 🚀 Executando o Projeto
+
+```powershell
+# Clonar
+git clone https://github.com/luizpaulo73/workwell.git
+cd workwell
+
+# Instalar dependências
 npm install
-```
 
-3. Inicie o projeto:
-
-```bash
+# Iniciar Metro
 npm start
 ```
 
-4. Abra o app em um emulador ou dispositivo físico usando o **Expo Go** ou um **development build** para funcionalidades completas, como notificações.
+## 🛠 Tecnologias
 
----
-
-## Link APK
- - [Lista de tarefas Plus](https://expo.dev/artifacts/eas/wug4cUn3TWhuhtiCQV7GhS.apk)
-
-## Link Vídeo Apresentaçào
- - [Vídeo](https://youtu.be/jR9KVKz4VCQ)
-
-## Login para testes
-
-Use o seguinte usuário de teste para acessar o app:
-
-* **Email:** fernando@gmail.com
-* **Senha:** expo123
-
----
-
-## Funcionalidades principais
-
-* Adicionar, editar e excluir tarefas
-* Marcar tarefas como concluídas
-* Definir data e hora de vencimento (`dueDate`)
-* Receber notificações locais quando a tarefa estiver próxima do horário
-* Tema personalizável (claro/escuro)
+-   React Native / Expo
+-   Expo Router
+-   AsyncStorage
+-   Lucide React Native (ícones)
+-   TypeScript (parcial – base TS + componentes JSX)
