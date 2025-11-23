@@ -5,7 +5,6 @@ export const TabNav = ({ activeTab, onTabChange }) => {
     const tabs = [
         { id: "schedule", label: "Agendar" },
         { id: "appointments", label: "Agendamentos" },
-        { id: "chat", label: "Chat 24/7" },
     ];
 
     return (

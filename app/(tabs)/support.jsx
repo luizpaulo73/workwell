@@ -68,7 +68,6 @@ export default function SupportTab() {
                             onCancel={handleCancel}
                         />
                     )}
-                    {activeSubTab === "chat" && <ChatTab />}
                 </View>
             </ScrollView>
         </SafeAreaView>
