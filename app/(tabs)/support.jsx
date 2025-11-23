@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import { useState, useCallback } from "react";
 import {
     SafeAreaView,
     ScrollView,
@@ -35,7 +35,7 @@ export default function SupportTab() {
         setConsultations(updated);
     };
 
-    React.useEffect(() => {
+    useEffect(() => {
         loadConsultations();
     }, [loadConsultations]);
 

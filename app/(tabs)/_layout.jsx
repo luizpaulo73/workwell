@@ -1,5 +1,4 @@
 import { Tabs } from "expo-router";
-import React from "react";
 import { Home, Activity, Brain, User } from "lucide-react-native";
 
 const tabs = [

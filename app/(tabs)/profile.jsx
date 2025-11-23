@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { SafeAreaView, ScrollView, StatusBar, StyleSheet } from "react-native";
 import { ProfileHeader } from "../../components/profile/ProfileHeader";
 import { ProfileTab } from "../../components/profile/ProfileTab";

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Modal } from "react-native";
-import { AlertCircle, Star } from "lucide-react-native";
+import { Star } from "lucide-react-native";
 import { CalendarPicker } from "./CalendarPicker";
 
 export const ScheduleTab = ({ onSchedule }) => {
