@@ -5,6 +5,7 @@ import {
     View,
     Text,
     TextInput,
+    Image,
 } from "react-native";
 import { useRouter } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -57,7 +58,11 @@ export default function Login() {
 
     return (
         <View style={[styles.screen, { backgroundColor: "#fff" }]}>
-            <Text style={styles.title}>Login</Text>
+            <Image
+                source={require("../assets/workwell.png")}
+                style={styles.logo}
+            />
+            <Text style={styles.title}>WorkWell</Text>
             <View style={styles.formContainer}>
                 <Text style={styles.label}>Usuário</Text>
                 <TextInput
@@ -126,4 +131,10 @@ const styles = StyleSheet.create({
         color: "#111827",
     },
     error: { color: "#DC2626", marginTop: 12, fontSize: 14 },
+    logo: {
+        width: 140,
+        height: 140,
+        resizeMode: "contain",
+        marginBottom: 4,
+    },
 });
