@@ -20,7 +20,6 @@ O **WorkWell** é um aplicativo mobile construído com **Expo** e **React Native
 -   Acompanhamento de participação mensal em atividades
 -   Inscrição em eventos de bem-estar corporativo
 -   Apoio psicológico: agendamento, cancelamento e histórico de consultas
--   Chat emocional 24/7 (placeholder) e modo SOS (placeholder)
 -   Histórico integrado de atividades e consultas no perfil
 
 Persistência simples via **AsyncStorage** (consultas e inscrições). Navegação usando **Expo Router**.                               |
