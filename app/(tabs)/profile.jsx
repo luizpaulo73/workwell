@@ -1,14 +1,21 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { SafeAreaView, ScrollView, StatusBar, StyleSheet } from "react-native";
 import { ProfileHeader } from "../../components/profile/ProfileHeader";
 import { ProfileTab } from "../../components/profile/ProfileTab";
 import { HistoryTab } from "../../components/profile/HistoryTab";
 import { ProfileTabNav } from "../../components/profile/TabNav";
 import { getConsultations } from "../../storage/consultations";
-import { useFocusEffect } from "expo-router";
+import { useFocusEffect, useLocalSearchParams } from "expo-router";
 
 export default function ProfileScreen() {
+    const params = useLocalSearchParams();
     const [activeSubTab, setActiveSubTab] = useState("profile");
+
+    useEffect(() => {
+        if (params.tab === "history") {
+            setActiveSubTab("history");
+        }
+    }, [params.tab]);
 
     const userData = {
         name: "João Silva",

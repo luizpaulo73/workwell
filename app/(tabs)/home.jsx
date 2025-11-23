@@ -11,14 +11,12 @@ import {
 import {
     Brain,
     Phone,
-    AlertCircle,
     Target,
     BarChart3,
-    ChevronRight,
     Calendar,
     Users,
 } from "lucide-react-native";
-import { useFocusEffect } from "expo-router";
+import { useFocusEffect, useRouter } from "expo-router";
 import { getSubscriptions } from "../../storage/activitySubscriptions";
 import { activitiesData } from "../../components/activitiesData";
 
@@ -60,36 +58,28 @@ export default function HomeTab() {
     const [participationPct, setParticipationPct] = useState(0);
     const userName = "João";
 
+    const router = useRouter();
     const shortcuts = [
         {
             icon: Brain,
             label: "Agendar\nPsicólogo",
             color: "#DBEAFE",
             iconColor: "#3B82F6",
-        },
-        {
-            icon: Phone,
-            label: "Chat\nEmocional",
-            color: "#D1FAE5",
-            iconColor: "#10B981",
-        },
-        {
-            icon: AlertCircle,
-            label: "SOS\nEmocional",
-            color: "#FEE2E2",
-            iconColor: "#EF4444",
+            route: "/support",
         },
         {
             icon: Target,
-            label: "Bem-Estar",
+            label: "Atividades",
             color: "#F3E8FF",
             iconColor: "#A855F7",
+            route: "/activities",
         },
         {
             icon: BarChart3,
             label: "Histórico",
             color: "#FFEDD5",
             iconColor: "#F97316",
+            route: "/profile?tab=history",
         },
     ];
 
@@ -98,15 +88,9 @@ export default function HomeTab() {
         { id: 2, title: "Happy Hour Virtual", time: "18:00", participants: 18 },
     ];
 
-    const availableActivities = [
-        "🏃 Corrida em Grupo",
-        "🧘 Yoga ao Vivo",
-        "💬 Palestra: Resiliência",
-    ];
-
     const computeParticipation = useCallback(async () => {
         const subs = await getSubscriptions();
-        const total = activitiesData.length || 1; // avoid divide by zero
+        const total = activitiesData.length || 1;
         const pct = Math.round((subs.length / total) * 100);
         setParticipationPct(pct);
     }, []);
@@ -181,6 +165,10 @@ export default function HomeTab() {
                                     <TouchableOpacity
                                         key={index}
                                         style={styles.shortcutItem}
+                                        onPress={() =>
+                                            shortcut.route &&
+                                            router.push(shortcut.route)
+                                        }
                                     >
                                         <View
                                             style={[
@@ -239,28 +227,6 @@ export default function HomeTab() {
                                             {activity.participants}
                                         </Text>
                                     </View>
-                                </TouchableOpacity>
-                            ))}
-                        </View>
-                    </View>
-
-                    <View style={styles.section}>
-                        <View style={styles.sectionHeader}>
-                            <Text style={styles.sectionTitle}>
-                                Atividades Disponíveis
-                            </Text>
-                            <ChevronRight size={16} color="#9CA3AF" />
-                        </View>
-                        <View style={styles.availableList}>
-                            {availableActivities.map((activity, index) => (
-                                <TouchableOpacity
-                                    key={index}
-                                    style={styles.availableCard}
-                                >
-                                    <Text style={styles.availableTitle}>
-                                        {activity}
-                                    </Text>
-                                    <ChevronRight size={20} color="#9CA3AF" />
                                 </TouchableOpacity>
                             ))}
                         </View>

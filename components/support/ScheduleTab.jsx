@@ -97,23 +97,6 @@ export const ScheduleTab = ({ onSchedule }) => {
                 </View>
             </Modal>
 
-            <View style={styles.sosCard}>
-                <View style={styles.sosLeft}>
-                    <View style={styles.sosIcon}>
-                        <AlertCircle size={24} color="#DC2626" />
-                    </View>
-                    <View>
-                        <Text style={styles.sosTitle}>
-                            Precisa de ajuda urgente?
-                        </Text>
-                        <Text style={styles.sosSubtitle}>Ative o modo SOS</Text>
-                    </View>
-                </View>
-                <TouchableOpacity style={styles.sosButton}>
-                    <Text style={styles.sosButtonText}>SOS</Text>
-                </TouchableOpacity>
-            </View>
-
             <Text style={styles.sectionTitle}>Psicólogos Disponíveis</Text>
             <View style={styles.dateSelectionRow}>
                 <TouchableOpacity
@@ -199,41 +182,6 @@ export const ScheduleTab = ({ onSchedule }) => {
 };
 
 const styles = StyleSheet.create({
-    sosCard: {
-        backgroundColor: "#FEF2F2",
-        borderWidth: 2,
-        borderColor: "#FECACA",
-        borderRadius: 16,
-        padding: 16,
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
-        marginBottom: 24,
-    },
-    sosLeft: { flexDirection: "row", alignItems: "center", gap: 12, flex: 1 },
-    sosIcon: {
-        width: 40,
-        height: 40,
-        backgroundColor: "#FFFFFF",
-        borderRadius: 20,
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    sosTitle: { fontSize: 14, fontWeight: "600", color: "#111827" },
-    sosSubtitle: { fontSize: 12, color: "#DC2626" },
-    sosButton: {
-        backgroundColor: "#DC2626",
-        paddingHorizontal: 16,
-        paddingVertical: 8,
-        borderRadius: 8,
-    },
-    sosButtonText: { color: "#FFFFFF", fontWeight: "bold", fontSize: 14 },
-    sectionTitle: {
-        fontSize: 16,
-        fontWeight: "600",
-        color: "#111827",
-        marginBottom: 16,
-    },
     psychologistsList: { gap: 12 },
     psychologistCard: {
         backgroundColor: "#FFFFFF",
