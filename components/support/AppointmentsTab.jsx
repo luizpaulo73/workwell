@@ -1,45 +1,55 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Calendar, Video, Clock } from "lucide-react-native";
 
-export const AppointmentsTab = ({ consultations = [], onCancel, setActiveSubtab }) => {
-    const latest = consultations.slice(-1)[0];
+export const AppointmentsTab = ({
+    consultations = [],
+    onCancel,
+    setActiveSubtab,
+}) => {
+    const hasAny = consultations.length > 0;
+    const sorted = [...consultations].sort(
+        (a, b) => new Date(a.dateISO) - new Date(b.dateISO)
+    );
     return (
         <View>
-            {latest && (
-                <View style={styles.appointmentCard}>
-                    <View style={styles.appointmentHeader}>
-                        <View style={styles.iconContainer}>
-                            <Calendar size={20} color="#2563EB" />
+            {hasAny && (
+                <View style={{ gap: 16 }}>
+                    {sorted.map((c) => (
+                        <View key={c.id} style={styles.appointmentCard}>
+                            <View style={styles.appointmentHeader}>
+                                <View style={styles.iconContainer}>
+                                    <Calendar size={20} color="#2563EB" />
+                                </View>
+                                <View style={styles.appointmentInfo}>
+                                    <Text style={styles.appointmentTitle}>
+                                        {c.title}
+                                    </Text>
+                                    <Text style={styles.appointmentDate}>
+                                        {c.displayDate}
+                                    </Text>
+                                </View>
+                            </View>
+                            <View style={styles.buttonRow}>
+                                <TouchableOpacity style={styles.videoButton}>
+                                    <Video size={16} color="#111827" />
+                                    <Text style={styles.videoButtonText}>
+                                        Videoconferência
+                                    </Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity
+                                    style={styles.cancelButton}
+                                    onPress={() => onCancel && onCancel(c.id)}
+                                >
+                                    <Text style={styles.cancelButtonText}>
+                                        Cancelar
+                                    </Text>
+                                </TouchableOpacity>
+                            </View>
                         </View>
-                        <View style={styles.appointmentInfo}>
-                            <Text style={styles.appointmentTitle}>
-                                {latest.title}
-                            </Text>
-                            <Text style={styles.appointmentDate}>
-                                {latest.displayDate}
-                            </Text>
-                        </View>
-                    </View>
-                    <View style={styles.buttonRow}>
-                        <TouchableOpacity style={styles.videoButton}>
-                            <Video size={16} color="#111827" />
-                            <Text style={styles.videoButtonText}>
-                                Videoconferência
-                            </Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            style={styles.cancelButton}
-                            onPress={() => onCancel && onCancel(latest.id)}
-                        >
-                            <Text style={styles.cancelButtonText}>
-                                Cancelar
-                            </Text>
-                        </TouchableOpacity>
-                    </View>
+                    ))}
                 </View>
             )}
-
-            {!latest && (
+            {!hasAny && (
                 <View style={styles.emptyCard}>
                     <View style={styles.emptyHeader}>
                         <View style={styles.emptyIcon}>
@@ -47,14 +57,19 @@ export const AppointmentsTab = ({ consultations = [], onCancel, setActiveSubtab 
                         </View>
                         <View>
                             <Text style={styles.emptyTitle}>
-                                Próxima Consulta
+                                Próximas Consultas
                             </Text>
                             <Text style={styles.emptySubtitle}>
                                 Você não tem consultas agendadas
                             </Text>
                         </View>
                     </View>
-                    <TouchableOpacity style={styles.scheduleNowButton} onPress={() => setActiveSubtab && setActiveSubtab("schedule")}>
+                    <TouchableOpacity
+                        style={styles.scheduleNowButton}
+                        onPress={() =>
+                            setActiveSubtab && setActiveSubtab("schedule")
+                        }
+                    >
                         <Text style={styles.scheduleNowText}>
                             Agendar Agora
                         </Text>
