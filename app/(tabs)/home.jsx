@@ -198,7 +198,9 @@ export default function HomeTab() {
                             <Text style={styles.sectionTitle}>
                                 Programação do Dia
                             </Text>
-                            <TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => router.push("/activities")}
+                            >
                                 <Text style={styles.seeMoreText}>Ver mais</Text>
                             </TouchableOpacity>
                         </View>
