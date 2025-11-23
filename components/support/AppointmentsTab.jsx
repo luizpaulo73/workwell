@@ -1,8 +1,7 @@
-import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Calendar, Video, Clock } from "lucide-react-native";
 
-export const AppointmentsTab = ({ consultations = [], onCancel }) => {
+export const AppointmentsTab = ({ consultations = [], onCancel, setActiveSubtab }) => {
     const latest = consultations.slice(-1)[0];
     return (
         <View>
@@ -55,7 +54,7 @@ export const AppointmentsTab = ({ consultations = [], onCancel }) => {
                             </Text>
                         </View>
                     </View>
-                    <TouchableOpacity style={styles.scheduleNowButton}>
+                    <TouchableOpacity style={styles.scheduleNowButton} onPress={() => setActiveSubtab && setActiveSubtab("schedule")}>
                         <Text style={styles.scheduleNowText}>
                             Agendar Agora
                         </Text>

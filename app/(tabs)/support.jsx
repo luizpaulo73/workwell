@@ -10,7 +10,6 @@ import {
 import { TabNav } from "../../components/support/TabNav";
 import { ScheduleTab } from "../../components/support/ScheduleTab";
 import { AppointmentsTab } from "../../components/support/AppointmentsTab";
-import { ChatTab } from "../../components/support/ChatTab";
 import {
     addConsultation,
     getConsultations,
@@ -66,6 +65,7 @@ export default function SupportTab() {
                         <AppointmentsTab
                             consultations={consultations}
                             onCancel={handleCancel}
+                            setActiveSubtab={setActiveSubTab}
                         />
                     )}
                 </View>
